@@ -1,0 +1,67 @@
+<% layout("/layouts/boilerplate") %>
+
+<!-- listings ko pura dikhane ke liye -->
+ 
+<body>
+
+    <div class="row ">
+        <div class="col-8 offset-2 setmargin">
+            <h3><%= listing.title %></h3>
+        </div>
+            <div class="card col-6 offset-2 setmargin">
+                <div class="card">
+                    <img class="card-img-top show-img" src="<%=listing.image%>" alt="listing_image">
+                     <div class="card-body">
+                        <p class="card-text">
+                            <%= listing.description %> <br>
+                            &#8377;<%=listing.price.toLocaleString("en-In")%><br>
+                            <%= listing.location %> <br>
+                            <%= listing.country %> <br>
+                        </p>
+                    </div>
+                  </div>
+            </div>
+    </div>
+       
+       <div class="btns">
+        <a href="/listings/<%= listing._id %>/edit" class="btn btn-dark edit-btn offset-4">Edit this Listing</a> &nbsp; &nbsp; &nbsp; &nbsp;
+        <form method="POST" action="/listings/<%=listing._id%>?_method=DELETE">
+         <button class="btn btn-dark">Delete</button>
+        </form> 
+       </div>
+       <hr>
+<div class="card col-6 offset-2  mt-3">
+       <h3>Leave a Review</h3>
+       <form method="POST" action="/listings/<%= listing._id %>/reviews" novalidate class="needs-validation">
+     <div class="mb-3 mt-3">
+        <label for="rating" class="form-label"><b>Rating</b></label>
+        <input type="number" min="1" max="5" id="rating" name="reviews[rating]" class="form-control" required>
+        <div class="invalid-feedback">
+           please give me a rating
+              </div>
+    </div>
+     <div class="mb-3 mt-3">
+        <label for="comment" class="form-label"> <b>comment</b></label>
+        <textarea name="reviews[content]" class="form-control" id="comment" cols="30" rows="10" placeholder="please enter a comment" required></textarea>
+        <div class="invalid-feedback">
+          please add a comment
+              </div>
+    </div>
+    
+        <button class="btn btn-outline-success mb-3 mt-3">submit</button>
+     </form>
+</div>
+
+<hr>
+<h3>All Reviews</h3>
+<ul>
+    <% for(review of listing.reviews) { %>
+  <li>
+    <%= review.content %>
+    <%= review.rating %>
+  </li>
+  
+  <% }%>
+</ul>
+    </body>
+</html>
