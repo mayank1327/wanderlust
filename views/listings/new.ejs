@@ -6,7 +6,7 @@
         <div class="col-8 offset-2">
             <h3>Create A New Lisiting</h3>
          <br>
-            <form method="POST" action="/listings" novalidate class="needs-validation">
+            <form method="POST" action="/listings" novalidate class="needs-validation" enctype="multipart/form-data">
 
                 <div class="mb-3">
                     <label for="title" class="form-label">Title</label>
@@ -66,10 +66,10 @@
                </div>
              
                <div class="mb-3">
-                <label for="image" class="form-label">Image URL</label>
+                <label for="image" class="form-label">Upload Image</label>
                 <input 
                 id="image"
-                type="text" 
+                type="file" 
                 placeholder="enter image url" 
                 name= "listing[image]" 
                 class="form-control">
@@ -78,6 +78,7 @@
                    image should be valid
                    </div>
                </div>
+
 
 
                <div class="mb-3">
