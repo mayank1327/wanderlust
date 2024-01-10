@@ -11,3 +11,4 @@ Array.from(forms).forEach(form => {
     form.classList.add('was-validated')
   }, false)
 })
+

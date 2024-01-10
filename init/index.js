@@ -18,6 +18,7 @@ main()
 
 const initDb = async ()=>{
    await Listing.deleteMany({});  //pura khali kar diya 
+   initData.data =  initData.data.map((obj)=>({...obj , owner:"658f158c14b9a5f3e3e8dfdf"}));
    await Listing.insertMany(initData.data)
    console.log("data was initialized")
    console.log(initData.data);

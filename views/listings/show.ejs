@@ -8,41 +8,59 @@
         <div class="col-8 offset-2 setmargin">
             <h3><%= listing.title %></h3>
         </div>
-            <div class="card col-6 offset-2 setmargin">
-                <div class="card">
+            <div class="card col-6 offset-2 setmargin listing-card ">
+                <div class="listing-card">
                     <img class="card-img-top show-img" src="<%=listing.image%>" alt="listing_image">
+                    <p class="card-text owner">Owned by <%= listing.owner.username %></p>
                      <div class="card-body">
-                        <p class="card-text">
-                            <%= listing.description %> <br>
-                            &#8377;<%=listing.price.toLocaleString("en-In")%><br>
-                            <%= listing.location %> <br>
-                            <%= listing.country %> <br>
+                            <p class="card-text"><%= listing.description %> <br></p>
+                                <p class="card-text">&#8377;<%=listing.price.toLocaleString("en-In")%><br> </p>
+                                    <p class="card-text"><%= listing.location %> <br></p>
+                            <p class="card-text"><%= listing.country %> <br></p>
                         </p>
                     </div>
                   </div>
             </div>
     </div>
        
-       <div class="btns">
-        <a href="/listings/<%= listing._id %>/edit" class="btn btn-dark edit-btn offset-4">Edit this Listing</a> &nbsp; &nbsp; &nbsp; &nbsp;
-        <form method="POST" action="/listings/<%=listing._id%>?_method=DELETE">
-         <button class="btn btn-dark">Delete</button>
-        </form> 
-       </div>
+       
+        <div class="btns">
+            <a href="/listings/<%= listing._id %>/edit" class="btn btn-dark edit-btn offset-4">Edit this Listing</a> &nbsp; &nbsp; &nbsp; &nbsp;
+            <form method="POST" action="/listings/<%=listing._id%>?_method=DELETE">
+             <button class="btn btn-dark">Delete</button>
+            </form> 
+           </div>
+          
        <hr>
-<div class="card col-6 offset-2  mt-3">
+<div class="listing-card col-6 offset-2  mt-3">
        <h3>Leave a Review</h3>
-       <form method="POST" action="/listings/<%= listing._id %>/reviews" novalidate class="needs-validation">
+       <form method="POST" 
+             action="/listings/<%= listing._id %>/reviews"
+             novalidate class="needs-validation">
      <div class="mb-3 mt-3">
         <label for="rating" class="form-label"><b>Rating</b></label>
         <input type="number" min="1" max="5" id="rating" name="reviews[rating]" class="form-control" required>
         <div class="invalid-feedback">
            please give me a rating
-              </div>
-    </div>
+     </div>
+    <!-- </div>
+    <fieldset class="starability-slot"> -->
+  <!-- <legend>First rating:</legend>
+  <input type="radio" id="no-rate" class="input-no-rate" name="rating" value="0" checked aria-label="No rating." />
+  <input type="radio" id="first-rate1" name="rating" value="1" />
+  <label for="first-rate1" title="Terrible">1 star</label>
+  <input type="radio" id="first-rate2" name="rating" value="2" />
+  <label for="first-rate2" title="Not good">2 stars</label>
+  <input type="radio" id="first-rate3" name="rating" value="3" />
+  <label for="first-rate3" title="Average">3 stars</label>
+  <input type="radio" id="first-rate4" name="rating" value="4" />
+  <label for="first-rate4" title="Very good">4 stars</label>
+  <input type="radio" id="first-rate5" name="rating" value="5" />
+  <label for="first-rate5" title="Amazing">5 stars</label>
+</fieldset> -->
      <div class="mb-3 mt-3">
         <label for="comment" class="form-label"> <b>comment</b></label>
-        <textarea name="reviews[content]" class="form-control" id="comment" cols="30" rows="10" placeholder="please enter a comment" required></textarea>
+        <textarea name="reviews[content]" class="form-control" id="comment" cols="10" rows="5" placeholder="please enter a comment" required></textarea>
         <div class="invalid-feedback">
           please add a comment
               </div>
@@ -53,15 +71,23 @@
 </div>
 
 <hr>
-<h3>All Reviews</h3>
-<ul>
-    <% for(review of listing.reviews) { %>
-  <li>
-    <%= review.content %>
-    <%= review.rating %>
-  </li>
-  
-  <% }%>
-</ul>
+<p><b>All Reviews</b></p>
+<div class="row">
+        <% for(review of listing.reviews) { %>
+      <div class="card col-5 ms-3 mb-3">
+        <div class="card-body">
+            <h5 class="card-title">jane doe</h5>
+           <p class="card-text"> <%= review.content %></p> 
+         <p class="card-text"><%= review.rating %></p>   
+        </div>
+        <form method="POST" 
+        action="/listings/<%= listing._id %>/reviews/<%= review._id %>?_method=DELETE" 
+        class="mb-3">
+            <button class="btn btn-sm btn-dark">delete</button>
+        </form>
+    </div>       
+      <% }%>
+    
+</div>
     </body>
 </html>

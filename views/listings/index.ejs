@@ -1,16 +1,70 @@
 
  <% layout("/layouts/boilerplate") %>
- <!-- <%= success %> -->
-<!-- main page ko create karne ke liye -->
-<body>
-    <!-- <h3>all Listings</h3> -->
-
-    <div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1">
+ 
+<body data-bs-theme="light">
+    <div id="filters">
+      <div class="filter">
+        <i class="fa-solid fa-fire"></i>
+        <p>Trending</p>
+      </div>
+      <div class="filter">
+        <i class="fa-solid fa-bed"></i>
+        <p>Rooms</p>
+      </div>
+      <div class="filter">
+        <i class="fa-solid fa-umbrella-beach"></i>        
+        <p>Beachs</p>
+      </div>
+      <div class="filter">
+        <i class="fa-solid fa-water"></i>        
+        <p>Lakes</p>
+      </div>
+      <div class="filter">
+        <i class="fa-solid fa-tower-observation"></i>
+        <p>Towers</p> 
+      </div>
+      <div class="filter">
+        <i class="fa-brands fa-fort-awesome"></i>
+        <p>Castles</p>
+    </div>
+    <div class="filter">
+      <i class="fa-solid fa-person-swimming"></i>
+      <p>pools</p>
+  </div>
+  <div class="filter">
+    <i class="fa-brands fa-fort-awesome"></i>
+    <p>Mountains</p>
+</div>
+<div class="filter">
+  <i class="fa-solid fa-sailboat"></i>
+  <p>Boats</p>
+</div>
+<div class="filter">
+  <i class="fa-solid fa-person-skiing"></i>
+  <p>Ski-in/out</p>
+</div>
+<div class="filter">
+  <i class="fa-solid fa-kitchen-set"></i>
+  <p>Chef's</p>
+</div>
+<div class="filter">
+  <i class="fa-brands fa-galactic-republic"></i>
+  <p>Arctics</p>
+</div>
+<div class="filter">
+  <i class="fa-solid fa-tree"></i>
+  <p>Trees</p>
+</div>
+<div class="filter">
+  <i class="fa-solid fa-meteor"></i>
+  <p>OMG!</p>
+</div>
+  </div>
+    <div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1 ">
         <% for (let listing of allListings){ %>
 
           <a href="/listings/<%= listing._id %>" class="listing-link">
-
-            <div class="card " >
+            <div class="card listing-card" >
               <img class="card-img-top" src="<%= listing.image %>" alt="Card image cap" style="height: 20rem";>
               <div class="card-img-overlay"></div>
              
@@ -20,11 +74,6 @@
                </div>
             </div>
             <% } %>
-  </div>
-          </a>
-        
-   <!-- <form method="GET" action="/listings/new">
-    <button>create new listing</button>
-   </form> -->
+  </div>      
 </body>
 

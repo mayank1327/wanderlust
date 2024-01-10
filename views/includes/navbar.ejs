@@ -6,15 +6,24 @@
        </button>
        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav">
-          <a class="nav-link " aria-current="page" href="/">Home</a>
-          <a class="nav-link" href="/listings/">All Listings</a>
-          <a class="nav-link" href="/listings/new">Add new Listings</a>
+          <a class="nav-link" href="/listings/">Explore</a>
           <!-- <a class="nav-link disabled" aria-disabled="true">Disabled</a> -->
          </div>
          <div class="navbar-nav ms-auto">
+          <form class="d-flex" role="search">
+            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-success" type="submit">Search</button>
+          </form>
+         </div>
+         <div class="navbar-nav ms-auto">
+          <div class="form-check-reverse form-switch" >
+            <input class="form-check-input mt-3  me-1" type="checkbox" role="switch" id="flexSwitchCheckDefault" checked onclick="myFunction()">
+            <label class="form-check-label" for="flexSwitchCheckDefault"></label>
+          </div>
+          <a class="nav-link" href="/listings/new">Airbnb your home</a>
           <%if(!curUser) { %>
-            <a class="nav-link " aria-current="page" href="/signup">sign up</a>
-           <a class="nav-link" href="/login">log in</a>
+            <a class="nav-link " aria-current="page" href="/signup"><b>sign up</b></a>
+           <a class="nav-link" href="/login"><b>log in</b></a>
           <% } %>
           <% if(curUser) { %>
             <a class="nav-link" href="/logout">log out</a>
